@@ -1,8 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://lg54iywxlhns"]
+[gd_scene load_steps=14 format=3 uid="uid://lg54iywxlhns"]
 
 [ext_resource type="PackedScene" uid="uid://cw36u53n7okp3" path="res://Resources/Player.tscn" id="1_7db1o"]
+[ext_resource type="Script" path="res://Game.gd" id="1_d11cl"]
 [ext_resource type="PackedScene" uid="uid://hpt6cy6f6pad" path="res://Resources/boundary.tscn" id="2_an35b"]
 [ext_resource type="Script" path="res://Resources/Player2.gd" id="3_tljmo"]
+[ext_resource type="PackedScene" uid="uid://byxxkp77ai8hl" path="res://Resources/ball.tscn" id="4_qek5b"]
+[ext_resource type="Script" path="res://Resources/ball.gd" id="5_8s1f2"]
 
 [sub_resource type="Gradient" id="Gradient_7y808"]
 offsets = PackedFloat32Array(0.534483)
@@ -25,7 +28,11 @@ colors = PackedColorArray(1, 1, 1, 1)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_p2juc"]
 gradient = SubResource("Gradient_da452")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7seq5"]
+size = Vector2(20, 146)
+
 [node name="Arena" type="Node2D"]
+script = ExtResource("1_d11cl")
 
 [node name="Background" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
@@ -43,6 +50,12 @@ texture = SubResource("GradientTexture2D_p2juc")
 
 [node name="Player" parent="." instance=ExtResource("1_7db1o")]
 position = Vector2(51, 0)
+wall_min_slide_angle = 0.0
+
+[node name="Player2" parent="." instance=ExtResource("1_7db1o")]
+position = Vector2(-51, 0)
+wall_min_slide_angle = 0.0
+script = ExtResource("3_tljmo")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(5, 5)
@@ -51,15 +64,32 @@ zoom = Vector2(5, 5)
 visible = false
 position = Vector2(0, -67)
 can_sleep = false
-lock_rotation = true
+freeze = true
 
 [node name="Boundary2" parent="." instance=ExtResource("2_an35b")]
 visible = false
 show_behind_parent = true
 position = Vector2(0, 67)
 can_sleep = false
-lock_rotation = true
+freeze = true
 
-[node name="Player2" parent="." instance=ExtResource("1_7db1o")]
-position = Vector2(-51, 1)
-script = ExtResource("3_tljmo")
+[node name="Ball" parent="." instance=ExtResource("4_qek5b")]
+position = Vector2(15, -14)
+script = ExtResource("5_8s1f2")
+
+[node name="wall" type="Area2D" parent="."]
+position = Vector2(-82, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wall"]
+position = Vector2(11, -1)
+shape = SubResource("RectangleShape2D_7seq5")
+
+[node name="wall2" type="Area2D" parent="."]
+position = Vector2(69, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wall2"]
+position = Vector2(2, 0)
+shape = SubResource("RectangleShape2D_7seq5")
+
+[connection signal="body_entered" from="wall" to="." method="_on_wall_body_entered"]
+[connection signal="body_entered" from="wall2" to="." method="_on_wall_2_body_entered"]
