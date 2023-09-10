@@ -1,3 +1,65 @@
-[gd_scene format=3 uid="uid://vodlg3tl4eaj"]
+[gd_scene load_steps=10 format=3 uid="uid://lg54iywxlhns"]
 
-[node name="Node2D" type="Node2D"]
+[ext_resource type="PackedScene" uid="uid://cw36u53n7okp3" path="res://Resources/Player.tscn" id="1_7db1o"]
+[ext_resource type="PackedScene" uid="uid://hpt6cy6f6pad" path="res://Resources/boundary.tscn" id="2_an35b"]
+[ext_resource type="Script" path="res://Resources/Player2.gd" id="3_tljmo"]
+
+[sub_resource type="Gradient" id="Gradient_7y808"]
+offsets = PackedFloat32Array(0.534483)
+colors = PackedColorArray(0.000827359, 0.07146, 0.127798, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ab0jb"]
+gradient = SubResource("Gradient_7y808")
+
+[sub_resource type="Gradient" id="Gradient_yn7fs"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_q56ef"]
+gradient = SubResource("Gradient_yn7fs")
+
+[sub_resource type="Gradient" id="Gradient_da452"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_p2juc"]
+gradient = SubResource("Gradient_da452")
+
+[node name="Arena" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = SubResource("GradientTexture2D_ab0jb")
+
+[node name="Bar1" type="Sprite2D" parent="."]
+position = Vector2(60.8, 0)
+scale = Vector2(0.1, 2)
+texture = SubResource("GradientTexture2D_q56ef")
+
+[node name="Bar2" type="Sprite2D" parent="."]
+position = Vector2(-60.8, 0)
+scale = Vector2(0.1, 2)
+texture = SubResource("GradientTexture2D_p2juc")
+
+[node name="Player" parent="." instance=ExtResource("1_7db1o")]
+position = Vector2(51, 0)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(5, 5)
+
+[node name="Boundary" parent="." instance=ExtResource("2_an35b")]
+visible = false
+position = Vector2(0, -67)
+can_sleep = false
+lock_rotation = true
+
+[node name="Boundary2" parent="." instance=ExtResource("2_an35b")]
+visible = false
+show_behind_parent = true
+position = Vector2(0, 67)
+can_sleep = false
+lock_rotation = true
+
+[node name="Player2" parent="." instance=ExtResource("1_7db1o")]
+position = Vector2(-51, 1)
+script = ExtResource("3_tljmo")
