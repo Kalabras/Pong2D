@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var rng = RandomNumberGenerator.new()
-@export var speed := 100
+@export var speed := 300
 
 #var velocity = 0
 
