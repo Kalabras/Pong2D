@@ -10,10 +10,12 @@ config_version=5
 
 [application]
 
-config/name="2D"
+config/name="Pong2D"
+config/description="Simple Pong2D Game made part of the #20_Games_Challenge"
 run/main_scene="res://node_2d.tscn"
 config/features=PackedStringArray("4.0", "GL Compatibility")
-config/icon="res://icon.svg"
+boot_splash/image="res://Resources/BOO.png"
+config/icon="res://Resources/racket.svg"
 
 [dotnet]
 
