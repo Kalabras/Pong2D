@@ -194,6 +194,11 @@ Escape: Resume"
 label_settings = SubResource("LabelSettings_w7haf")
 horizontal_alignment = 1
 
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_top = 13.0
+offset_right = 2.0
+offset_bottom = 23.0
+
 [connection signal="body_entered" from="wall" to="." method="_on_wall_body_entered"]
 [connection signal="body_entered" from="wall" to="UI/ScoreP2" method="_on_wall_body_entered"]
 [connection signal="body_entered" from="wall2" to="." method="_on_wall_2_body_entered"]
