@@ -17,5 +17,5 @@ scale = Vector2(2, 0.1)
 texture = SubResource("GradientTexture2D_faimm")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-scale = Vector2(2, 0.1)
+scale = Vector2(1.85, 0.095)
 polygon = PackedVector2Array(32, 32, -32, 32, -32, -32, 32, -32)

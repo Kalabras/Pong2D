@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://lg54iywxlhns"]
+[gd_scene load_steps=19 format=3 uid="uid://lg54iywxlhns"]
 
 [ext_resource type="PackedScene" uid="uid://cw36u53n7okp3" path="res://Resources/Player.tscn" id="1_7db1o"]
 [ext_resource type="Script" path="res://Game.gd" id="1_d11cl"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://Resources/Player2.gd" id="3_tljmo"]
 [ext_resource type="PackedScene" uid="uid://byxxkp77ai8hl" path="res://Resources/ball.tscn" id="4_qek5b"]
 [ext_resource type="Script" path="res://Resources/ball.gd" id="5_8s1f2"]
+[ext_resource type="Script" path="res://ScoreP1.gd" id="7_7xyk2"]
+[ext_resource type="Script" path="res://ScoreP2.gd" id="8_6glwq"]
 
 [sub_resource type="Gradient" id="Gradient_7y808"]
 offsets = PackedFloat32Array(0.534483)
@@ -31,7 +33,17 @@ gradient = SubResource("Gradient_da452")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7seq5"]
 size = Vector2(20, 146)
 
+[sub_resource type="LabelSettings" id="LabelSettings_h023a"]
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_xrpcs"]
+font_size = 9
+
+[sub_resource type="LabelSettings" id="LabelSettings_w7haf"]
+font_size = 13
+
 [node name="Arena" type="Node2D"]
+process_mode = 3
 script = ExtResource("1_d11cl")
 
 [node name="Background" type="Sprite2D" parent="."]
@@ -61,19 +73,18 @@ script = ExtResource("3_tljmo")
 zoom = Vector2(5, 5)
 
 [node name="Boundary" parent="." instance=ExtResource("2_an35b")]
-visible = false
 position = Vector2(0, -67)
 can_sleep = false
 freeze = true
 
 [node name="Boundary2" parent="." instance=ExtResource("2_an35b")]
-visible = false
 show_behind_parent = true
 position = Vector2(0, 67)
 can_sleep = false
 freeze = true
 
 [node name="Ball" parent="." instance=ExtResource("4_qek5b")]
+process_mode = 1
 position = Vector2(15, -14)
 script = ExtResource("5_8s1f2")
 
@@ -91,5 +102,59 @@ position = Vector2(69, 0)
 position = Vector2(2, 0)
 shape = SubResource("RectangleShape2D_7seq5")
 
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ScoreP1" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = -34.0
+offset_top = -62.0
+offset_right = -21.0
+offset_bottom = -47.0
+label_settings = SubResource("LabelSettings_h023a")
+horizontal_alignment = 1
+script = ExtResource("7_7xyk2")
+
+[node name="ScoreP2" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 23.0
+offset_top = -63.0
+offset_right = 37.0
+offset_bottom = -47.0
+label_settings = SubResource("LabelSettings_xrpcs")
+horizontal_alignment = 1
+script = ExtResource("8_6glwq")
+
+[node name="Play" type="ColorRect" parent="UI"]
+process_mode = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.375
+anchor_top = -1.0
+anchor_right = 1.375
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.439216, 0.439216, 0.439216, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="UI/Play"]
+layout_mode = 0
+offset_left = -6.0
+offset_top = -2.0
+offset_right = 118.0
+offset_bottom = 82.0
+text = "PONG
+Press:
+Reset: Enter
+Resume: Escape"
+label_settings = SubResource("LabelSettings_w7haf")
+horizontal_alignment = 1
+
 [connection signal="body_entered" from="wall" to="." method="_on_wall_body_entered"]
+[connection signal="body_entered" from="wall" to="UI/ScoreP2" method="_on_wall_body_entered"]
 [connection signal="body_entered" from="wall2" to="." method="_on_wall_2_body_entered"]
+[connection signal="body_entered" from="wall2" to="UI/ScoreP1" method="_on_wall_2_body_entered"]
