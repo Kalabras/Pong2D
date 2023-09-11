@@ -33,15 +33,16 @@ process_mode = 3
 script = ExtResource("1_d11cl")
 
 [node name="Background" type="Sprite2D" parent="."]
-scale = Vector2(2, 2)
+position = Vector2(-1, 0)
+scale = Vector2(3.8125, 2)
 texture = SubResource("GradientTexture2D_ab0jb")
 
 [node name="Player" parent="." instance=ExtResource("1_7db1o")]
-position = Vector2(51, 0)
+position = Vector2(110, 0)
 wall_min_slide_angle = 0.0
 
 [node name="Player2" parent="." instance=ExtResource("1_7db1o")]
-position = Vector2(-51, 0)
+position = Vector2(-110, 0)
 wall_min_slide_angle = 0.0
 script = ExtResource("3_tljmo")
 
@@ -49,13 +50,24 @@ script = ExtResource("3_tljmo")
 zoom = Vector2(5, 5)
 
 [node name="Boundary" parent="." instance=ExtResource("2_an35b")]
-position = Vector2(0, -67)
+position = Vector2(-53, -67)
+can_sleep = false
+freeze = true
+
+[node name="Boundary4" parent="." instance=ExtResource("2_an35b")]
+position = Vector2(54, -67)
 can_sleep = false
 freeze = true
 
 [node name="Boundary2" parent="." instance=ExtResource("2_an35b")]
 show_behind_parent = true
-position = Vector2(0, 67)
+position = Vector2(-54, 67)
+can_sleep = false
+freeze = true
+
+[node name="Boundary3" parent="." instance=ExtResource("2_an35b")]
+show_behind_parent = true
+position = Vector2(54, 67)
 can_sleep = false
 freeze = true
 
@@ -65,26 +77,26 @@ position = Vector2(15, -14)
 script = ExtResource("5_8s1f2")
 
 [node name="wall" type="Area2D" parent="."]
-position = Vector2(-82, 1)
+position = Vector2(-119, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="wall"]
-position = Vector2(11, -1)
+position = Vector2(-5, 0)
 shape = SubResource("RectangleShape2D_7seq5")
 
 [node name="wall2" type="Area2D" parent="."]
-position = Vector2(69, 0)
+position = Vector2(121, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="wall2"]
-position = Vector2(2, 0)
+position = Vector2(3, -2)
 shape = SubResource("RectangleShape2D_7seq5")
 
 [node name="Divider" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 offset_left = -4.0
-offset_top = -69.0
+offset_top = -70.0
 offset_right = 36.0
-offset_bottom = -29.0
+offset_bottom = -30.0
 
 [node name="ColorRect" type="ColorRect" parent="Divider"]
 layout_mode = 2
@@ -93,51 +105,61 @@ offset_right = 5.0
 offset_bottom = 10.0
 
 [node name="ColorRect" type="ColorRect" parent="Divider/ColorRect"]
+layout_mode = 0
 offset_top = 13.0
 offset_right = 2.0
 offset_bottom = 23.0
 
 [node name="ColorRect" type="ColorRect" parent="Divider/ColorRect/ColorRect"]
+layout_mode = 0
 offset_top = 13.0
 offset_right = 2.0
 offset_bottom = 23.0
 
 [node name="ColorRect" type="ColorRect" parent="Divider/ColorRect/ColorRect/ColorRect"]
+layout_mode = 0
 offset_top = 13.0
 offset_right = 2.0
 offset_bottom = 23.0
 
 [node name="ColorRect" type="ColorRect" parent="Divider/ColorRect/ColorRect/ColorRect/ColorRect"]
+layout_mode = 0
 offset_top = 13.0
 offset_right = 2.0
 offset_bottom = 23.0
 
 [node name="ColorRect" type="ColorRect" parent="Divider/ColorRect/ColorRect/ColorRect/ColorRect/ColorRect"]
+layout_mode = 0
 offset_top = 13.0
 offset_right = 2.0
 offset_bottom = 23.0
 
 [node name="ColorRect" type="ColorRect" parent="Divider/ColorRect/ColorRect/ColorRect/ColorRect/ColorRect/ColorRect"]
+layout_mode = 0
 offset_top = 13.0
 offset_right = 2.0
 offset_bottom = 23.0
 
 [node name="ColorRect" type="ColorRect" parent="Divider/ColorRect/ColorRect/ColorRect/ColorRect/ColorRect/ColorRect/ColorRect"]
+layout_mode = 0
 offset_top = 13.0
 offset_right = 2.0
 offset_bottom = 23.0
 
 [node name="ColorRect" type="ColorRect" parent="Divider/ColorRect/ColorRect/ColorRect/ColorRect/ColorRect/ColorRect/ColorRect/ColorRect"]
+layout_mode = 0
 offset_top = 13.0
 offset_right = 2.0
 offset_bottom = 23.0
 
 [node name="ColorRect" type="ColorRect" parent="Divider/ColorRect/ColorRect/ColorRect/ColorRect/ColorRect/ColorRect/ColorRect/ColorRect/ColorRect"]
+layout_mode = 0
 offset_top = 13.0
 offset_right = 2.0
 offset_bottom = 23.0
 
 [node name="ColorRect" type="ColorRect" parent="Divider/ColorRect/ColorRect/ColorRect/ColorRect/ColorRect/ColorRect/ColorRect/ColorRect/ColorRect/ColorRect"]
+layout_mode = 0
 offset_top = 13.0
 offset_right = 2.0
 offset_bottom = 23.0
@@ -193,11 +215,6 @@ Enter: Reset
 Escape: Resume"
 label_settings = SubResource("LabelSettings_w7haf")
 horizontal_alignment = 1
-
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_top = 13.0
-offset_right = 2.0
-offset_bottom = 23.0
 
 [connection signal="body_entered" from="wall" to="." method="_on_wall_body_entered"]
 [connection signal="body_entered" from="wall" to="UI/ScoreP2" method="_on_wall_body_entered"]
