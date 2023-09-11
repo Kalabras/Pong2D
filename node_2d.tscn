@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ctfq1pp66wevf"]
+[gd_scene load_steps=20 format=3 uid="uid://ctfq1pp66wevf"]
 
 [ext_resource type="PackedScene" uid="uid://cw36u53n7okp3" path="res://Resources/Player.tscn" id="1_7db1o"]
 [ext_resource type="Script" path="res://Game.gd" id="1_d11cl"]
@@ -9,6 +9,9 @@
 [ext_resource type="Script" path="res://ScoreP1.gd" id="7_7xyk2"]
 [ext_resource type="Script" path="res://ScoreP2.gd" id="8_6glwq"]
 [ext_resource type="FontFile" uid="uid://d3s3c2pc48iy4" path="res://Resources/OpenSans_Condensed-Bold.ttf" id="9_ekt0y"]
+[ext_resource type="AudioStream" uid="uid://desn8pv1wy6jk" path="res://Resources/33777__jobro__1-beep-c.wav" id="10_3rxwo"]
+[ext_resource type="AudioStream" uid="uid://68tfc4vtqa5h" path="res://Resources/535840__evretro__8-bit-mini-win-sound-effect.wav" id="11_8xlhk"]
+[ext_resource type="AudioStream" uid="uid://c3v04koxdrj8l" path="res://Resources/253174__suntemple__retro-you-lose-sfx.wav" id="12_lm6wt"]
 
 [sub_resource type="Gradient" id="Gradient_7y808"]
 offsets = PackedFloat32Array(0.534483)
@@ -225,7 +228,14 @@ Escape: Resume"
 label_settings = SubResource("LabelSettings_w7haf")
 horizontal_alignment = 1
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="Collision_Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_3rxwo")
+
+[node name="Pointwon" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_8xlhk")
+
+[node name="Point_lost" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_lm6wt")
 
 [connection signal="body_entered" from="wall" to="." method="_on_wall_body_entered"]
 [connection signal="body_entered" from="wall" to="UI/ScoreP2" method="_on_wall_body_entered"]
