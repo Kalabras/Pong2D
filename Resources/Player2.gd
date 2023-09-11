@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED = 4000.0
+@export var SPEED = 4000.0
 
 func _physics_process(delta):
 	var ball = get_node("/root/Arena/Ball").get_global_position()

@@ -11,6 +11,8 @@ func init():
 	var y = rng.randf_range(-1,1)
 	position.x = 0
 	position.y = 0
+	get_node("/root/Arena/Player").position.y = 0
+	get_node("/root/Arena/Player2").position.y = 0
 	if rng.randf_range(-1,1)>0: x *= -1
 	velocity = Vector2(x, y).normalized() * speed
 
