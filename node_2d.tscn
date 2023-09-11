@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://ctfq1pp66wevf"]
+[gd_scene load_steps=25 format=3 uid="uid://ctfq1pp66wevf"]
 
 [ext_resource type="PackedScene" uid="uid://cw36u53n7okp3" path="res://Resources/Player.tscn" id="1_7db1o"]
 [ext_resource type="Script" path="res://Game.gd" id="1_d11cl"]
@@ -45,6 +45,9 @@ font_size = 17
 font = ExtResource("9_ekt0y")
 font_size = 22
 font_color = Color(0.929412, 0, 0.0352941, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8k07n"]
+font_size = 14
 
 [node name="Arena" type="Node2D"]
 process_mode = 3
@@ -271,6 +274,16 @@ stream = ExtResource("14_olkn1")
 
 [node name="Diff" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("15_frro0")
+
+[node name="Credits" type="Label" parent="."]
+offset_left = -1357.0
+offset_top = -78.0
+offset_right = -1210.0
+offset_bottom = -9.0
+text = "by Abderrahmen Jbeli
+AKA Kalabras
+9/11/2023"
+label_settings = SubResource("LabelSettings_8k07n")
 
 [connection signal="body_entered" from="wall" to="." method="_on_wall_body_entered"]
 [connection signal="body_entered" from="wall" to="UI/ScoreP2" method="_on_wall_body_entered"]
